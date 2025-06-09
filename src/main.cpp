@@ -1,7 +1,6 @@
 // Including libraries
 #include <iostream>
 #include <string>
-#include "PredicaoPorDirecao.cpp"
 
 using namespace std;
 
