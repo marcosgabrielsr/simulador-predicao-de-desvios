@@ -7,8 +7,11 @@ using namespace std;
 class TecnicaPredicao {
     public:
         // Atributos públicos
+        // -- Medidas de desempenho
         int nBranchesExecutados, nAcertosNT, nAcertosT;
         int nAcertosDirecao, nAcertos1bit, nAcertos2bits;
+        
+        // -- Arquivo do Trace
         string arquivoTrace;
 
         // Método construtor
@@ -24,8 +27,24 @@ class TecnicaPredicao {
         }
 
         // Método modelo para executar predicao
-        void predicao(int endBranch, int endAlvo) {
-            cout << "Esta funcao retorna a predicao";
+        void predicao(int endBranch, int endAlvo, string desvio) {
+            cout << "Este metodo serve como modelo para os demais metodos de predicao";
+        }
+
+        // Método pega da linha os valores endBranch, endAlvo e desvio
+        void pegarDadosLinha(string linha, int &endBranch, int &endAlvo, string &desvio) {
+            // Inicializa variaveis inicio e fim para pegar texto de tamanho n = fim - inicio que começa na posição inicio
+            int inicio = 0, fim = linha.find(' ', inicio);
+            
+            endBranch = stoi(linha.substr(inicio, fim - inicio));
+            inicio = fim + 1;
+            fim = linha.find(' ', inicio);
+
+            endAlvo = stoi(linha.substr(inicio, fim - inicio));
+            inicio = fim + 1;
+            fim = linha.find(' ', inicio);
+
+            desvio = linha.substr(inicio, fim - inicio);
         }
 
         // Método para executar a simulação da técnia de predição dado um arquivo de trace
@@ -39,10 +58,9 @@ class TecnicaPredicao {
             string linha, desvio;
             int endBranch, endAlvo;
             while (getline(trace, linha)) {
-                // Fragmentando linha para endBranch, andAlvo, desvio
-                int inicio = 0, fim = linha.find(' ', inicio);
-                cout << linha << "\n";
-                cout << fim << "\n";
+                pegarDadosLinha(linha, endBranch, endAlvo, desvio);
+                predicao(endBranch, endAlvo, desvio);
+                nBranchesExecutados++;
             }
 
             trace.close();
