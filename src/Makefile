@@ -1,15 +1,12 @@
-all: PredicaoPorDirecao.o
-	g++ PredicaoPorDirecao.o main.cpp -o main -Wall
+all: tecpred.o
+	gcc tecpred.o simpred.c -o simpred -Wall
 	rm *.o
 
-PredicaoPorDirecao.o : TecnicaPredicao.o PredicaoPorDirecao.cpp
-	g++ -c PredicaoPorDirecao.cpp
-
-TecnicaPredicao.o : TecnicaPredicao.cpp
-	g++ -c TecnicaPredicao.cpp
+tecpred.o: tecpred.h
+	gcc -c tecpred.c
 
 clean:
-	rm main
+	rm *.o
 
 teste:
-	./main traceTest1.txt 5
+	./simpred traceTest1.txt
