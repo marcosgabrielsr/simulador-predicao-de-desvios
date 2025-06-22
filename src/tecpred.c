@@ -6,7 +6,7 @@ void iniciarMedidas(medidasDesempenho *md) {
     md->nBranchesExecutados = 0;
     md->nAcertosNT = 0;
     md->nAcertosT = 0;
-    md->nAcertosDireção = 0;
+    md->nAcertosDirecao = 0;
     md->nAcertos1bit = 0;
     md->nAcertos2bits = 0;
 }
@@ -62,6 +62,6 @@ void predPorDirecao(dadosLinha dados, medidasDesempenho* md) {
     p = (dados.endBranch < dados.endAlvo) ? 'N' : 'T';
 
     if(p == dados.desvio) {
-        md->nAcertosDireção++;
+        md->nAcertosDirecao++;
     }
 }
