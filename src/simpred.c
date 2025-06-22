@@ -9,9 +9,16 @@ int main(int argc, char const *argv[])
     int nLinhasBPB = atoi(argv[2]);
     medidasDesempenho mdPPD;
 
+    // predicao por direcao
     simulacao(arquivo, &mdPPD, predPorDirecao);
     printf("Medidas de desempenho Predicao por Direcao:\n");
     printf("-> nAcertosDirecao: %d\n", mdPPD.nAcertosDirecao);
+    printf("-> nBranchesExecutados: %d\n", mdPPD.nBranchesExecutados);
+
+    // Predicao 1-bit
+    pred1bit(arquivo, nLinhasBPB, &mdPPD);
+    printf("Medidas de desempenho Predicao 1-bit:\n");
+    printf("-> nAcertos1bit: %d\n", mdPPD.nAcertos1bit);
     printf("-> nBranchesExecutados: %d\n", mdPPD.nBranchesExecutados);
 
     // Predicao 2-bits

@@ -25,5 +25,7 @@ typedef struct {
 void simulacao(const char* arquivoTrace, medidasDesempenho *md, void (*predicao)(dadosLinha, medidasDesempenho*));
 // Função para técnica de predição por direção
 void predPorDirecao(dadosLinha dados, medidasDesempenho* md);
+// função para tecnica de predição 1-bit
+void pred1bit(const char* arquivoTrace, int nLinhasBPB, medidasDesempenho* md);
 // função para técnica de predição 2-bits
 void pred2bits(const char* arquivoTrace, int nLinhasBPB, medidasDesempenho* md);
