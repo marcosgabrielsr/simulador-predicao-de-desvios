@@ -56,6 +56,24 @@ void simulacao(const char* arquivoTrace, medidasDesempenho *md, void (*predicao)
     fclose(trace);
 }
 
+//Função para técnica de predição not-taken
+void predNotTaken(dadosLinha dados, medidasDesempenho* md){
+    char ocorrido = dados.desvio;
+
+    if(ocorrido == 'N'){
+        md->nAcertosNT++;
+    }
+}
+
+//Função para técnica de predição taken
+void predTaken(dadosLinha dados, medidasDesempenho* md){
+    char ocorrido = dados.desvio;
+
+    if(ocorrido == 'T'){
+        md->nAcertosT++;
+    }
+}
+
 // Função para técnica de predição por direção
 void predPorDirecao(dadosLinha dados, medidasDesempenho* md) {
     char p;
