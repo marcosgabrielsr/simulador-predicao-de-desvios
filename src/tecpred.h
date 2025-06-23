@@ -22,7 +22,16 @@ typedef struct {
 } medidasDesempenho;
 
 //-> Protótipos das funções
+// Função para inicializar medidas de desempenho como zero
+void iniciarMedidas(medidasDesempenho *md);
+// Função para pegar os dados da linha do trace a armazená-los
+void pegarDadosLinha(char* linha, dadosLinha *dados);
+// Executa simulações das predições de desvio estáticas
 void simulacao(const char* arquivoTrace, medidasDesempenho *md, void (*predicao)(dadosLinha, medidasDesempenho*));
+// Função para técnica de predição not-taken
+void predNotTaken(dadosLinha dados, medidasDesempenho* md);
+// Função para técnica de predição taken
+void predTaken(dadosLinha dados, medidasDesempenho* md);
 // Função para técnica de predição por direção
 void predPorDirecao(dadosLinha dados, medidasDesempenho* md);
 // função para tecnica de predição 1-bit
