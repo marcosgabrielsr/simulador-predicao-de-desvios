@@ -7,25 +7,53 @@ int main(int argc, char const *argv[])
     // Lendo nome do arquivo e número de linhas do BPB
     const char *arquivo = argv[1];
     int nLinhasBPB = atoi(argv[2]);
-    medidasDesempenho mdPPD;
+    medidasDesempenho md;
 
-    // predicao por direcao
-    simulacao(arquivo, &mdPPD, predPorDirecao);
+    printf("=========================== %s ============================\n", arquivo);
+
+    // Predicao Not Taken
+    simulacao(arquivo, &md, predNotTaken);
+    printf("Predicao Not Taken:\n");
+    printf("-> nAcertosDirecao: %d\n", md.nAcertosNT);
+    printf("-> nBranchesExecutados: %d\n", md.nBranchesExecutados);
+
+    printf("\n");
+
+    // Predicao Taken
+    simulacao(arquivo, &md, predTaken);
+    printf("Predicao Taken:\n");
+    printf("-> nAcertosDirecao: %d\n", md.nAcertosT);
+    printf("-> nBranchesExecutados: %d\n", md.nBranchesExecutados);
+
+    printf("\n");
+
+    // Predicao por direcao
+    simulacao(arquivo, &md, predPorDirecao);
     printf("Medidas de desempenho Predicao por Direcao:\n");
-    printf("-> nAcertosDirecao: %d\n", mdPPD.nAcertosDirecao);
-    printf("-> nBranchesExecutados: %d\n", mdPPD.nBranchesExecutados);
+    printf("-> nAcertosDirecao: %d\n", md.nAcertosDirecao);
+    printf("-> nBranchesExecutados: %d\n", md.nBranchesExecutados);
 
-    // Predicao 1-bit
-    pred1bit(arquivo, nLinhasBPB, &mdPPD);
-    printf("Medidas de desempenho Predicao 1-bit:\n");
-    printf("-> nAcertos1bit: %d\n", mdPPD.nAcertos1bit);
-    printf("-> nBranchesExecutados: %d\n", mdPPD.nBranchesExecutados);
+    printf("\n");
 
-    // Predicao 2-bits
-    pred2bits(arquivo, nLinhasBPB, &mdPPD);
-    printf("Medidas de desempenho Predicao 2-bits:\n");
-    printf("-> nAcertos2bits: %d\n", mdPPD.nAcertos2bits);
-    printf("-> nBranchesExecutados: %d\n", mdPPD.nBranchesExecutados);
+    if(nLinhasBPB != 0) {
+        // Predicao 1-bit
+        pred1bit(arquivo, nLinhasBPB, &md);
+        printf("Medidas de desempenho Predicao 1-bit:\n");
+        printf("-> nAcertos1bit: %d\n", md.nAcertos1bit);
+        printf("-> nBranchesExecutados: %d\n", md.nBranchesExecutados);
+
+        printf("\n");
+
+        // Predicao 2-bits
+        pred2bits(arquivo, nLinhasBPB, &md);
+        printf("Medidas de desempenho Predicao 2-bits:\n");
+        printf("-> nAcertos2bits: %d\n", md.nAcertos2bits);
+        printf("-> nBranchesExecutados: %d\n", md.nBranchesExecutados);
+
+        printf("\n");
+    }
+
+    printf("=======================================================\n\n");
 
     return EXIT_SUCCESS;
 }
