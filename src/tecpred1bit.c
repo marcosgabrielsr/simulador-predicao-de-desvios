@@ -11,6 +11,7 @@ void pred1bit(const char* arquivoTrace, int nLinhasBPB, medidasDesempenho* md) {
         printf("Erro ao abrir o arquivo de trace!\n");
         exit(EXIT_FAILURE);
     }
+
     dadosLinha dados;
     while (fgets(linha, TAMANHO_LINHA, trace)) {
         pegarDadosLinha(linha, &dados);                     // extrai endBranch, endAlvo e desvio
@@ -22,6 +23,9 @@ void pred1bit(const char* arquivoTrace, int nLinhasBPB, medidasDesempenho* md) {
         BPB[idx] = (dados.desvio == 'T');            // atualiza o bit de predição  
         md->nBranchesExecutados++;               // incrementa o contador de branches executados   
     }
+    
+    printf("numero de bits (log2(nLinhasBPB)): %d\n", nLinhasBPB);
+
     free(BPB);  // libera a memória alocada para a tabela de predição           
     fclose(trace);
 }

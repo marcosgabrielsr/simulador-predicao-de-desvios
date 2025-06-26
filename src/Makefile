@@ -18,9 +18,17 @@ clean:
 teste:
 	./simpred traceTest1.txt
 
-experimento:
+exp2:
 	./simpred traces/trace_fft_mi.txt 0
-	./simpred traces/trace gsm decoder me.txt 0
-	./simpred traces/trace patricia mi.txt 0
-	./simpred traces/Taxa de acertos média.txt 0
+	./simpred traces/trace_gsm_decoder_me.txt 0
+	./simpred traces/trace_patricia_mi.txt 0
 
+exp3:
+	./simpred traces/trace_rijndael_encoder_mi.txt 16
+	./simpred traces/trace_rijndael_encoder_mi.txt 32
+	./simpred traces/trace_rijndael_encoder_mi.txt 64
+	./simpred traces/trace_rijndael_encoder_mi.txt 128
+	./simpred traces/trace_rijndael_encoder_mi.txt 256
+	./simpred traces/trace_rijndael_encoder_mi.txt 512
+	./simpred traces/trace_rijndael_encoder_mi.txt 1024
+	./simpred traces/trace_rijndael_encoder_mi.txt 2048

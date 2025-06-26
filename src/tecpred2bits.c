@@ -4,19 +4,16 @@
  */
 
 #include "tecpred.h"
-#include <stdio.h>
-#include <stdlib.h>
 
 // Função para técnica de predição 2‐bits com flip após 2 erros
 void pred2bits(const char* arquivoTrace, int nLinhasBPB, medidasDesempenho* md) {
     // BPB: contador saturante de 2 bits (0…3)
     unsigned char *BPB = calloc(nLinhasBPB, sizeof(unsigned char));
     if (!BPB) { fprintf(stderr, "Erro ao alocar BPB\n"); exit(EXIT_FAILURE); }
-    // erro consecutivo por entrada
     unsigned char *errCount = calloc(nLinhasBPB, sizeof(unsigned char));
     if (!errCount) { free(BPB); fprintf(stderr, "Erro ao alocar errCount\n"); exit(EXIT_FAILURE); }
 
-    iniciarMedidas(md);  // zera contadores
+    iniciarMedidas(md);
 
     char linha[TAMANHO_LINHA];
     FILE *trace = fopen(arquivoTrace, "r");
@@ -63,6 +60,8 @@ void pred2bits(const char* arquivoTrace, int nLinhasBPB, medidasDesempenho* md) 
 
         md->nBranchesExecutados++;
     }
+
+    printf("numero de bits (log2(nLinhasBPB)): %d\n", 2 * nLinhasBPB);
 
     fclose(trace);
     free(BPB);

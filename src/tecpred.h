@@ -11,7 +11,6 @@ typedef struct {
     char desvio;
 } dadosLinha;
 
-
 typedef struct {
     int nBranchesExecutados;
     int nAcertosNT;
